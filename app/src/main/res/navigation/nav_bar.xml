@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/homeFragement">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.kotlinlearning.ui.main.MainFragment"
+        android:label="Main fragment"
+        tools:layout="@layout/fragment_main"/>
+    <fragment
+        android:id="@+id/homeFragement"
+        android:name="com.example.kotlinlearning.ui.home.HomeFragement"
+        android:label="fragment_home_fragement"
+        tools:layout="@layout/fragment_home_fragement" >
+        <action
+            android:id="@+id/action_homeFragement_to_home"
+            app:destination="@id/home" />
+    </fragment>
+
+
+</navigation>
