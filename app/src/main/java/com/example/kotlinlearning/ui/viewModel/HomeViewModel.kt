@@ -1,13 +1,11 @@
 package com.example.kotlinlearning.ui.viewModel
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.example.kotlinlearning.data.dao.ModuleDao
 import com.example.kotlinlearning.data.entity.Module
-import com.example.kotlinlearning.data.repository.ModuleRepository
-import com.example.kotlinlearning.ioThread
+import com.example.kotlinlearning.data.repository.local.ModuleRepository
+import com.example.kotlinlearning.utils.ioThread
 import com.example.kotlinlearning.ui.adapter.module.ModuleListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

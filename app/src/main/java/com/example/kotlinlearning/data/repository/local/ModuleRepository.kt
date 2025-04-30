@@ -1,4 +1,4 @@
-package com.example.kotlinlearning.data.repository
+package com.example.kotlinlearning.data.repository.local
 
 import androidx.paging.PagingSource
 import com.example.kotlinlearning.data.dao.ModuleDao

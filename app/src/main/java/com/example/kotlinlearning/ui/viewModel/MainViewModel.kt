@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.example.kotlinlearning.data.dao.CheeseDao
 import com.example.kotlinlearning.data.entity.Cheese
-import com.example.kotlinlearning.ioThread
+import com.example.kotlinlearning.utils.ioThread
 import com.example.kotlinlearning.ui.adapter.cheese.CheeseListItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

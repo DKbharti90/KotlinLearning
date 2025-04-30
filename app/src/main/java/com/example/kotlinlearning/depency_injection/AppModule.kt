@@ -1,4 +1,4 @@
-package com.example.kotlinlearning.module
+package com.example.kotlinlearning.depency_injection
 
 import android.content.Context
 import androidx.room.Room

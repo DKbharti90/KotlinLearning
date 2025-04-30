@@ -1,23 +1,13 @@
 package com.example.kotlinlearning.data
 
-import android.content.Context
-import android.os.Looper
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.kotlinlearning.data.dao.CheeseDao
 import com.example.kotlinlearning.data.dao.ModuleDao
 import com.example.kotlinlearning.data.dao.UserDao
 import com.example.kotlinlearning.data.entity.Cheese
 import com.example.kotlinlearning.data.entity.Module
 import com.example.kotlinlearning.data.entity.User
-import com.example.kotlinlearning.ioThread
-import java.util.concurrent.Executors
-import java.util.logging.Handler
 
 
 @Database(entities = [User::class,Cheese::class,Module::class], version = 1)
