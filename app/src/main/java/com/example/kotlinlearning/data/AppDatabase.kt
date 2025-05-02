@@ -10,7 +10,7 @@ import com.example.kotlinlearning.data.entity.Module
 import com.example.kotlinlearning.data.entity.User
 
 
-@Database(entities = [User::class,Cheese::class,Module::class], version = 1)
+@Database(entities = [User::class,Cheese::class,Module::class], version = 1, exportSchema = false)
 abstract class AppDatabase:RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun cheeseDao(): CheeseDao

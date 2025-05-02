@@ -15,13 +15,12 @@ import com.example.kotlinlearning.databinding.FragmentMainBinding
 import com.example.kotlinlearning.ui.adapter.cheese.CheeseAdapter
 import com.example.kotlinlearning.ui.adapter.cheese.CheeseViewHolder
 import com.example.kotlinlearning.ui.viewModel.MainViewModel
-import com.example.kotlinlearning.ui.viewModel.factory.MainViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
     private lateinit var mainFragmentBinding:FragmentMainBinding
-    private val viewModel by viewModels<MainViewModel> { activity?.let { MainViewModelFactory(it.application) }!! }
+   // private val viewModel by viewModels<MainViewModel> { activity?.let { MainViewModelFactory(it.application) }!! }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,7 @@ class MainFragment : Fragment() {
         // Subscribe the adapter to the ViewModel, so the items in the adapter are refreshed
         // when the list changes
         lifecycleScope.launch {
-            viewModel.allCheeses.collectLatest { adapter.submitData(it) }
+           // viewModel.allCheeses.collectLatest { adapter.submitData(it) }
         }
 
         initAddButtonListener()
@@ -71,7 +70,7 @@ class MainFragment : Fragment() {
             // automatically removed in response, because the adapter is observing the live list.
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 (viewHolder as CheeseViewHolder).cheese?.let {
-                    viewModel.remove(it)
+                    //viewModel.remove(it)
                 }
             }
         }).attachToRecyclerView(mainFragmentBinding.cheeseList)
@@ -80,7 +79,7 @@ class MainFragment : Fragment() {
     private fun addCheese() {
         val newCheese = mainFragmentBinding.inputText.text.trim()
         if (newCheese.isNotEmpty()) {
-            viewModel.insert(newCheese)
+           // viewModel.insert(newCheese)
             mainFragmentBinding.inputText.setText("")
         }
     }

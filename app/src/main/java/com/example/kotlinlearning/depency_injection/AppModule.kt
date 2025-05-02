@@ -13,6 +13,16 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+
+
+/**
+ *
+ * Hilt has provided the pre defined Component for ApplicationContext
+ * Compile time binding
+ *
+ *
+ * */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
