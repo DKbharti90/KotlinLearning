@@ -3,6 +3,7 @@ package com.example.kotlinlearning.data.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.kotlinlearning.data.entity.User
 
@@ -19,8 +20,8 @@ interface UserDao {
             "last_name LIKE :last LIMIT 1")
     fun findByName(first: String, last: String): User
 
-    @Insert
-    fun insertAll(vararg users: User)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(user: User);
 
     @Delete
     fun delete(user: User)

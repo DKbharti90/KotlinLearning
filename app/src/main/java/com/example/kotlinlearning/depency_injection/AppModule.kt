@@ -30,24 +30,21 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext appContext: Context): AppDatabase{
-        /*
-        // If Migration is Required
-        return Room.databaseBuilder(
-             appContext,
-             AppDatabase::class.java,
-             AppConstant.DATABASE_NAME)
-             .addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()*/
-
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
             AppConstant.DATABASE_NAME)
+            .addMigrations(MIGRATION_1_2,MIGRATION_2_3) // If Migration is Required (Need to main tail all the Migration)
             .build()
     }
 
     @Singleton
     @Provides
-    fun provideYourDao(db: AppDatabase) = db.moduleDao()
+    fun provideModuleDao(db: AppDatabase) = db.moduleDao()
+
+    @Singleton
+    @Provides
+    fun provideUserDao(db: AppDatabase) = db.userDao()
 
 
     // If Migration is used

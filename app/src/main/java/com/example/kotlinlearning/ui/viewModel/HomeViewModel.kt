@@ -8,8 +8,10 @@ import com.example.kotlinlearning.data.repository.local.ModuleRepository
 import com.example.kotlinlearning.utils.ioThread
 import com.example.kotlinlearning.ui.adapter.module.ModuleListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -54,5 +56,24 @@ class HomeViewModel @Inject constructor(private val repository: ModuleRepository
     fun remove(module : Module) = ioThread {
         repository.delete(module)
     }
+
+
+
+
+    suspend fun insertModule() {
+        repository.insert(Module(name = "USER", navigation = "USER"))
+        repository.insert(Module(name = "Employee",navigation = "USER"))
+        repository.insert(Module(name = "RRARRA",navigation = "USER"))
+        repository.insert(Module(name = "DDDD", navigation ="USER"))
+        repository.insert(Module(name = "RRRR", navigation ="USER"))
+        repository.insert(Module(name = "TTTTT",navigation = "USER"))
+        repository.insert(Module(name = "RRRRR",navigation = "USER"))
+        repository.insert(Module(name = "$$$$$",navigation = "USER"))
+        repository.insert(Module(name = "FFFFFF",navigation = "USER"))
+        repository.insert(Module(name =  "VVVVVV",navigation = "USER"))
+        repository.insert(Module(name =  "DDDDDD", navigation ="USER"))
+        repository.insert(Module( name = "YYYYYY", navigation ="USER"))
+    }
+
 
 }
