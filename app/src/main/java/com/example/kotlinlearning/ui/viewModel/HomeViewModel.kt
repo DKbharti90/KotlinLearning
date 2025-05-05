@@ -55,4 +55,23 @@ class HomeViewModel @Inject constructor(private val repository: ModuleRepository
         repository.delete(module)
     }
 
+
+
+
+    suspend fun insertModule() {
+        repository.insert(Module(name = "USER", navigation = "USER"))
+        repository.insert(Module(name = "Employee",navigation = "USER"))
+        repository.insert(Module(name = "RRARRA",navigation = "USER"))
+        repository.insert(Module(name = "DDDD", navigation ="USER"))
+        repository.insert(Module(name = "RRRR", navigation ="USER"))
+        repository.insert(Module(name = "TTTTT",navigation = "USER"))
+        repository.insert(Module(name = "RRRRR",navigation = "USER"))
+        repository.insert(Module(name = "$$$$$",navigation = "USER"))
+        repository.insert(Module(name = "FFFFFF",navigation = "USER"))
+        repository.insert(Module(name =  "VVVVVV",navigation = "USER"))
+        repository.insert(Module(name =  "DDDDDD", navigation ="USER"))
+        repository.insert(Module( name = "YYYYYY", navigation ="USER"))
+    }
+
+
 }
