@@ -94,4 +94,15 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.9.0")
 
+    val retrofit_version = "2.9.0"
+
+    implementation ("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation ("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    implementation ("com.squareup.okhttp3:logging-interceptor:$retrofit_version")
+    val okhttp_version="4.12.0"
+    implementation ("com.squareup.okhttp3:okhttp:$okhttp_version")
+    implementation ("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
+
+
+
 }
