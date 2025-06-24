@@ -4,15 +4,16 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-data class User(
-    val uid: Int,
-    val firstName: String?,
-    val lastName: String?,
-    val email: String?,
-    val password: String?
+@Entity
+class UserEntity (
+    @PrimaryKey val uid: Int,
+    @ColumnInfo(name = "first_name") val firstName: String?,
+    @ColumnInfo(name = "last_name") val lastName: String?,
+    @ColumnInfo(name = "email") val email: String?,
+    @ColumnInfo(name = "password") val password: String?
 ){
-    fun toEntity(): UserEntity {
-        return UserEntity(
+    fun toDto(): User {
+        return User(
             uid = this.uid,
             firstName = this.firstName,
             lastName = this.lastName,
