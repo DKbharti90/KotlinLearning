@@ -1,6 +1,7 @@
 package com.example.kotlinlearning.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.buffer
+import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.channels.consume
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
@@ -42,6 +45,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeBinding: FragmentHomeFragementBinding
     private val homeViewModel : HomeViewModel by viewModels()
     var channel = Channel<Int>();
+    private val channels=Channel<Int>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -217,8 +221,25 @@ class HomeFragment : Fragment() {
 
         }
 
+        producerForTheChannel()
+        consumerForChannel()
     }
 
+
+    fun producerForTheChannel(){
+        lifecycleScope.launch {
+            channels.send(1)
+            channels.send(2)
+            channels.send(3)
+        }
+    }
+
+    fun consumerForChannel(){
+        lifecycleScope.launch {
+            Log.d("CHANNEL_DATA",channels.receive().toString())
+            Log.d("CHANNEL_DATA",channels.receive().toString())
+        }
+    }
 
 
     override fun onCreateView(
@@ -241,11 +262,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun openActivity(view: View, module: Module) {
-
-        Toast.makeText(context,"CLICLKED",Toast.LENGTH_LONG).show()
-       // findNavController().navigate(module.navigation)
-
     }
+
+
+
 
 
 }

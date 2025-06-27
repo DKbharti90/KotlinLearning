@@ -5,24 +5,38 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.kotlinlearning.data.entity.User
+import com.example.kotlinlearning.data.entity.UserEntity
 
 @Dao
 interface UserDao {
 
-    @Query("SELECT * FROM user")
-    fun getAll(): List<User>
+    @Query("SELECT * FROM userentity")
+    suspend fun getAll(): List<UserEntity>
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<User>
+    @Query("SELECT * FROM userentity WHERE uid IN (:userIds)")
+    suspend fun loadAllByIds(userIds: IntArray): List<UserEntity>
 
-    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
+    @Query("SELECT * FROM userentity WHERE uid = (:userId)")
+    suspend fun loadAllById(userId: Int): UserEntity?
+
+    @Query("SELECT * FROM userentity WHERE first_name LIKE :first AND " +
             "last_name LIKE :last LIMIT 1")
-    fun findByName(first: String, last: String): User
+    suspend fun findByName(first: String, last: String): UserEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(user: User);
+    suspend fun insert(user: UserEntity);
 
-    @Delete
-    fun delete(user: User)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUsers(users: List<UserEntity>)
+
+    @Query("DELETE FROM UserEntity WHERE uid = :id")
+    suspend fun deleteUser(id: Int)
+
+    @Update
+    suspend fun updateUser(user: UserEntity)
+
+    @Query("DELETE FROM userentity")
+    suspend fun clearUsers()
 }
