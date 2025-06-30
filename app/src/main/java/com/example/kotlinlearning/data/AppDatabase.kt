@@ -8,6 +8,7 @@ import com.example.kotlinlearning.data.dao.UserDao
 import com.example.kotlinlearning.data.entity.Cheese
 import com.example.kotlinlearning.data.entity.Module
 import com.example.kotlinlearning.data.entity.User
+import com.example.kotlinlearning.data.entity.UserEntity
 
 
 @Database(entities = [UserEntity::class,Cheese::class,Module::class], version = 1, exportSchema = false)

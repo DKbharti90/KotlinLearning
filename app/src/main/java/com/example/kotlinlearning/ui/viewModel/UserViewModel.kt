@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kotlinlearning.data.UiState
 import com.example.kotlinlearning.data.entity.User
+import com.example.kotlinlearning.data.repository.shared.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,8 +22,8 @@ class UserViewModel @Inject constructor(private val userRepository: UserReposito
         viewModelScope.launch {
             _userStateFlow.value = UiState.Loading
             try {
-                val users = userRepository.getAll()
-                _userStateFlow.value = if (users.isEmpty()) UiState.Empty else UiState.Success(users)
+                val users = userRepository.getUsers(true).getOrNull()
+                _userStateFlow.value = if (users?.let {it.isEmpty()} == true) UiState.Empty else UiState.Success(users!!)
             } catch (e: Exception) {
                 _userStateFlow.value = UiState.Error(e.localizedMessage ?: "Unknown Error")
             }
