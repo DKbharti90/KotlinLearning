@@ -6,11 +6,7 @@ import com.example.kotlinlearning.data.entity.User
 import com.example.kotlinlearning.data.localdatasource.LocalDataSource
 import com.example.kotlinlearning.data.remot.RemoteDataSource
 import com.example.kotlinlearning.data.repository.shared.UserRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import okhttp3.Dispatcher
 
 class UserRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
@@ -25,7 +21,7 @@ class UserRepositoryImpl(
 
             // 1. Check cache first (if not forcing refresh)
             if (!forceRefresh) {
-                cacheDataSource.getUsers()?.let { cachedUser ->
+                cacheDataSource.getUsers().let { cachedUser ->
                     return Result.success(cachedUser)
                 }
             }
@@ -66,7 +62,7 @@ class UserRepositoryImpl(
 
         return try {
             if (!forceRefresh){
-                cacheDataSource.getUser(id)?.let { cacheduser-> return Result.success(cacheduser) }
+                cacheDataSource.getUser(id).let { cacheduser-> return Result.success(cacheduser) }
             }
 
             localDataSource.getUserById(id)?.let { localuser->
@@ -129,38 +125,30 @@ class UserRepositoryImpl(
     }
 
     override suspend fun deleteUser(id: Int): Result<Boolean> {
-        return try {
-            val response=remoteDataSource.deleteUser(id)
-            if (response.isSuccessful){
-                localDataSource.deleteUser(id)
-                cacheDataSource.clearCache()
-                Result.success(true)
-            }else{
-                Result.failure(Exception("Failed to delete user: ${response.message()}"))
-            }
+       /* return try {
 
-        }catch (exception: Exception){
-            Result.failure(exception)
         }
+        catch (exception : Exception){
+            Result.failure(exception)
+        }*/
+
+        return  Result.success(true);
     }
 
     override suspend fun refreshUser(): Result<List<User>> {
-        return getUsers(forceRefresh = true)
+        TODO("Not yet implemented")
     }
 
     override suspend fun clearCache() {
-        cacheDataSource.clearCache()
+        TODO("Not yet implemented")
     }
 
-    override suspend fun getUsersFlow(): Flow<List<User>> = flow{
-        cacheDataSource.getUsers()?.let { emit(it) }
-        val result=getUsers(true)
-        result.getOrNull()?.let { emit(it) }
-    }.flowOn(Dispatchers.IO)
+    override suspend fun getUsersFlow(): Flow<List<User>> {
+        TODO("Not yet implemented")
+    }
 
-    override suspend fun getUserFlow(id: Int): Flow<User> = flow {
-        cacheDataSource.getUser(id)
-        val result=getUser(id,true)
-        result.getOrNull()?.let { emit(it) }
-    }.flowOn(Dispatchers.IO)
+    override suspend fun getUserFlow(): Flow<User> {
+        TODO("Not yet implemented")
+    }
 }
+

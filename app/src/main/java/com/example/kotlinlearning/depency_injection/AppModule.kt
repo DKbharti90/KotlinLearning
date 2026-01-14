@@ -28,8 +28,7 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
-    @Singleton
-    fun provideDatabase(@ApplicationContext appContext: Context): AppDatabase{
+    @Singleton    fun provideDatabase(@ApplicationContext appContext: Context): AppDatabase{
         /*
         // If Migration is Required
         return Room.databaseBuilder(
@@ -45,6 +44,8 @@ object AppModule {
             .addMigrations(MIGRATION_1_2,MIGRATION_2_3) // If Migration is Required (Need to main tail all the Migration)
             .build()
     }
+
+
 
     @Singleton
     @Provides
@@ -70,4 +71,5 @@ object AppModule {
             database.execSQL("ALTER TABLE Book ADD COLUMN pub_year INTEGER")
         }
     }
+
 }
