@@ -2,10 +2,10 @@ package com.example.kotlinlearning.data.remot.impl
 
 import com.example.kotlinlearning.data.entity.User
 import com.example.kotlinlearning.data.remot.RemoteDataSource
-import com.example.kotlinlearning.data.repository.network.ServiceModule
+import com.example.kotlinlearning.data.repository.network.ApiService
 import retrofit2.Response
 
-class ApiDataSource(private val serviceModule: ServiceModule) :  RemoteDataSource{
+class ApiDataSource(private val serviceModule: ApiService) :  RemoteDataSource{
 
     override suspend fun getUsers(): Response<List<User>> =serviceModule.getUsers()
 

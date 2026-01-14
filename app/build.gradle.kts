@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
-    id("com.google.devtools.ksp") version "2.1.20-1.0.32" //
+    id("com.google.devtools.ksp")
     id("com.apollographql.apollo")
 }
 
@@ -12,6 +12,7 @@ apollo {
         introspection {
             endpointUrl.set("https://countries.trevorblades.com/graphql")
             schemaFile.set(file("src/main/graphql/schema.graphqls"))
+            generateKotlinModels.set(true)
             // headers.put("Authorization", "Bearer YOUR_TOKEN_HERE")
         }
     }

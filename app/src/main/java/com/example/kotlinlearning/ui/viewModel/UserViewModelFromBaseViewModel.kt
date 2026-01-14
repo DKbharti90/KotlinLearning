@@ -1,10 +1,12 @@
 package com.example.kotlinlearning.ui.viewModel
 
-import com.example.kotlinlearning.data.UiState
-import com.example.kotlinlearning.data.entity.User
-import kotlinx.coroutines.flow.StateFlow
+
+import androidx.lifecycle.ViewModel
+import com.example.kotlinlearning.data.repository.shared.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-class UserViewModelFromBaseViewModel @Inject constructor(private val userRepository: UserRepository) : BaseViewModel() {
-    val userState :StateFlow<UiState<List<User>>> =flowUiState { userRepository.getAll() }
+@HiltViewModel
+class UserViewModelFromBaseViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
+   // val userState :StateFlow<UiState<List<User>>> = flowUiState { userRepository.getUsersFlow() }
 }

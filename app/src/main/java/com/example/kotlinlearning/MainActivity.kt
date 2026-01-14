@@ -1,23 +1,11 @@
 package com.example.kotlinlearning
 
-import android.arch.lifecycle.Observer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.work.BackoffPolicy
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequest
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkInfo
-import androidx.work.WorkManager
 import com.example.kotlinlearning.databinding.ActivityMainBinding
-import com.example.kotlinlearning.workmanager.MyWorkManager
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.TimeUnit
 
 
 /**
@@ -37,7 +25,7 @@ open class MainActivity : AppCompatActivity() {
         navController = navigationHost.navController
 
 
-        val myWorkRequest: OneTimeWorkRequest =
+      /*  val myWorkRequest: OneTimeWorkRequest =
             OneTimeWorkRequestBuilder<MyWorkManager>()
                 .setConstraints(
                     Constraints.Builder().
@@ -46,7 +34,7 @@ open class MainActivity : AppCompatActivity() {
                     OneTimeWorkRequest.MIN_BACKOFF_MILLIS,
                     TimeUnit.MILLISECONDS)
                 .build()
-        WorkManager.getInstance().enqueue(myWorkRequest)
+        WorkManager.getInstance().enqueue(myWorkRequest)*/
 
         /**
          * for Observe the the Work manager result
