@@ -21,7 +21,7 @@ class UserRepositoryImpl(
 
             // 1. Check cache first (if not forcing refresh)
             if (!forceRefresh) {
-                cacheDataSource.getUsers()?.let { cachedUser ->
+                cacheDataSource.getUsers().let { cachedUser ->
                     return Result.success(cachedUser)
                 }
             }
@@ -62,7 +62,7 @@ class UserRepositoryImpl(
 
         return try {
             if (!forceRefresh){
-                cacheDataSource.getUser(id)?.let { cacheduser-> return Result.success(cacheduser) }
+                cacheDataSource.getUser(id).let { cacheduser-> return Result.success(cacheduser) }
             }
 
             localDataSource.getUserById(id)?.let { localuser->
@@ -125,7 +125,14 @@ class UserRepositoryImpl(
     }
 
     override suspend fun deleteUser(id: Int): Result<Boolean> {
-        TODO("Not yet implemented")
+       /* return try {
+
+        }
+        catch (exception : Exception){
+            Result.failure(exception)
+        }*/
+
+        return  Result.success(true);
     }
 
     override suspend fun refreshUser(): Result<List<User>> {
@@ -144,3 +151,4 @@ class UserRepositoryImpl(
         TODO("Not yet implemented")
     }
 }
+

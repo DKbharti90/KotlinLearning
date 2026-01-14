@@ -3,6 +3,18 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id ("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp") version "2.1.20-1.0.32" //
+    id("com.apollographql.apollo") version "4.1.0"
+}
+
+apollo {
+    service("service") {
+        packageName.set("com.example.kotlinlearning")
+        introspection {
+            endpointUrl.set("https://countries.trevorblades.com/graphql")
+            schemaFile.set(file("src/main/graphql/schema.graphqls"))
+           // headers.put("Authorization", "Bearer YOUR_TOKEN_HERE")
+        }
+    }
 }
 
 android {
@@ -45,6 +57,8 @@ android {
 
 
 }
+
+
 
 dependencies {
 
@@ -103,5 +117,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+
+    implementation("com.apollographql.apollo:apollo-runtime:4.1.0")
+
 
 }
