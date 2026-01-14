@@ -24,7 +24,7 @@ interface UserRepository {
 
     suspend fun getUsersFlow() :Flow<List<User>>
 
-    suspend fun getUserFlow() :Flow<User>
+    suspend fun getUserFlow(id: Int) :Flow<User>
 
 
 }
