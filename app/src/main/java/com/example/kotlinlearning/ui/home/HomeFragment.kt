@@ -50,8 +50,8 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        producer()
-        consumer()
+        //producer()
+        //consumer()
     }
 
     /**
@@ -251,9 +251,9 @@ class HomeFragment : Fragment() {
         homeBinding=FragmentHomeFragementBinding.inflate(layoutInflater)
         val adapter=ModuleAdapter( itemClickListener = { view, module -> openActivity(view, module)} )
         homeBinding.modelList.adapter=adapter
-        lifecycleScope.launch(Dispatchers.IO) {
+       /* lifecycleScope.launch {
             homeViewModel.insertModule()
-        }
+        }*/
 
         lifecycleScope.launch {
             homeViewModel.allModule.collectLatest { adapter.submitData(it) }

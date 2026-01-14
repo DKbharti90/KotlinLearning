@@ -1,6 +1,6 @@
 package com.example.kotlinlearning.depency_injection
 
-import com.example.kotlinlearning.data.ApiService
+import com.example.kotlinlearning.data.repository.network.ApiService
 import com.example.kotlinlearning.data.AppDatabase
 import com.example.kotlinlearning.data.cachedatasource.CacheDataSource
 import com.example.kotlinlearning.data.cachedatasource.impl.MemoryCacheDataSource
@@ -8,7 +8,6 @@ import com.example.kotlinlearning.data.localdatasource.LocalDataSource
 import com.example.kotlinlearning.data.localdatasource.impl.DatabaseDataSource
 import com.example.kotlinlearning.data.remot.RemoteDataSource
 import com.example.kotlinlearning.data.remot.impl.ApiDataSource
-import com.example.kotlinlearning.data.repository.network.ServiceModule
 import com.example.kotlinlearning.data.repository.shared.UserRepository
 import com.example.kotlinlearning.data.repository.shared.impl.UserRepositoryImpl
 import dagger.Module
@@ -24,9 +23,10 @@ object UserRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRemortDataSource(apiService: ServiceModule): RemoteDataSource{
+    fun provideRemortDataSource(apiService: ApiService): RemoteDataSource{
         return ApiDataSource(apiService)
     }
+
 
     @Provides
     @Singleton
@@ -44,7 +44,8 @@ object UserRepositoryModule {
     @Singleton
     fun provideUserRepository(localDataSource: LocalDataSource,
                               cacheDataSource: CacheDataSource,
-                              remoteDataSource: RemoteDataSource): UserRepository{
+                              remoteDataSource: RemoteDataSource):
+            UserRepository{
         return UserRepositoryImpl(remoteDataSource,localDataSource,cacheDataSource)
     }
 

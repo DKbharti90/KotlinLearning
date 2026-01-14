@@ -1,6 +1,8 @@
 package com.example.kotlinlearning.depency_injection
 
-import com.example.kotlinlearning.data.ApiService
+import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.network.okHttpClient
+import com.example.kotlinlearning.data.repository.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,10 +40,10 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL) // Replace with your base URL
-            .client(okHttpClient)
+            .client(provideOkHttp())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -50,6 +52,30 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provodeApolooClinet(): ApolloClient{
+        return ApolloClient.Builder()
+            .serverUrl(BASE_URL)
+            .okHttpClient(provideOkHttp())
+            .build()
+    }
+
+    fun provideOkHttp(): OkHttpClient {
+        return OkHttpClient
+            .Builder()
+            .addInterceptor({ chain ->
+                val original = chain.request()
+                val builder = original.newBuilder().method(
+                    original.method,
+                    original.body
+                )
+                builder.addHeader("Authorization", "Bearer " + "BuildConfig.AUTH_TOKEN")
+                chain.proceed(builder.build())
+            }).build()
+
     }
 
 
