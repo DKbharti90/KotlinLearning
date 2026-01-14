@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
     id("com.google.devtools.ksp") version "2.1.20-1.0.32" //
-    id("com.apollographql.apollo") version "4.1.0"
+    id("com.apollographql.apollo")
 }
 
 apollo {
@@ -12,7 +12,7 @@ apollo {
         introspection {
             endpointUrl.set("https://countries.trevorblades.com/graphql")
             schemaFile.set(file("src/main/graphql/schema.graphqls"))
-           // headers.put("Authorization", "Bearer YOUR_TOKEN_HERE")
+            // headers.put("Authorization", "Bearer YOUR_TOKEN_HERE")
         }
     }
 }
@@ -102,22 +102,21 @@ dependencies {
 
     implementation("androidx.paging:paging-runtime-ktx:3.3.6")
     //optional dependency for RxJava support
-    implementation ("androidx.paging:paging-rxjava2-ktx:3.3.6")
-    implementation ("com.google.dagger:hilt-android:2.51.1")
-    ksp ("com.google.dagger:hilt-compiler:2.51.1")
+    implementation("androidx.paging:paging-rxjava2-ktx:3.3.6")
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    ksp("com.google.dagger:hilt-compiler:2.51.1")
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.9.0")
 
-    val retrofit_version="2.9.0"
-    val okhttp_version="4.12.0"
-    val coroutines_version="1.7.3"
+    val retrofit_version = "2.9.0"
+    val okhttp_version = "4.12.0"
+    val coroutines_version = "1.7.3"
 
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
     implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
-
     implementation("com.apollographql.apollo:apollo-runtime:4.1.0")
 
 
