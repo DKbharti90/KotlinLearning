@@ -68,7 +68,7 @@ dependencies {
     val okhttp_version = "5.0.0-alpha.14"
     val coroutines_version = "1.9.0"
     val room_version = "2.8.4"
-    val hilt_version = "2.52.1"
+    val hilt_version = "2.51.1"
     val paging_version = "3.3.6"
     val apollo_version = "4.1.1"
 
