@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")                    // ✅ REQUIRED
     id("com.google.dagger.hilt.android")
-    id("com.google.devtools.ksp")
+    id("com.google.devtools.ksp")         // only for Room
     id("com.apollographql.apollo")
 }
 
@@ -63,27 +64,27 @@ android {
 
 dependencies {
 
-    val retrofit_version = "2.11.0"
+    val retrofitVersion = "2.11.0"
     val okhttp_version = "5.0.0-alpha.14"
     val coroutines_version = "1.9.0"
-    val room_version = "2.8.0"
+    val room_version = "2.8.4"
     val hilt_version = "2.52.1"
     val paging_version = "3.3.6"
     val apollo_version = "4.1.1"
 
     // AndroidX core libraries
-    implementation("androidx.core:core-ktx:1.16.0")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.core:core-ktx:1.17.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("com.google.android.material:material:1.13.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
 
     // Navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.9")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.9")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.6")
 
     // Room (KSP)
     implementation("androidx.room:room-runtime:$room_version")
@@ -97,11 +98,13 @@ dependencies {
 
     // Hilt
     implementation("com.google.dagger:hilt-android:$hilt_version")
-    ksp("com.google.dagger:hilt-compiler:$hilt_version")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+
+
 
     // Retrofit + OkHttp
-    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     implementation("com.squareup.okhttp3:okhttp:$okhttp_version")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_version")
 
