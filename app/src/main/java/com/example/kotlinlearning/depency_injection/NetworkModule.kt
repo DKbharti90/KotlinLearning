@@ -2,6 +2,7 @@ package com.example.kotlinlearning.depency_injection
 
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.network.okHttpClient
+import com.example.kotlinlearning.data.apollo_client.ApolloCountryClient
 import com.example.kotlinlearning.data.repository.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -11,6 +12,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+import com.example.kotlinlearning.doamin.CountryClient
+
 
 
 @Module
@@ -18,6 +21,8 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val BASE_URL = "https://api.example.com/"
+    private const val BASE_URL_FOR_APOLLO = "https://countries.trevorblades.com/graphql/"
+
 
    /* @Provides
     @Singleton
@@ -56,13 +61,15 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provodeApolooClinet(): ApolloClient{
+    fun provideApolooClinet(): ApolloClient{
         return ApolloClient.Builder()
-            .serverUrl(BASE_URL)
+            .serverUrl(BASE_URL_FOR_APOLLO)
             .okHttpClient(provideOkHttp())
             .build()
     }
 
+    @Singleton
+    @Provides
     fun provideOkHttp(): OkHttpClient {
         return OkHttpClient
             .Builder()
@@ -79,7 +86,12 @@ object NetworkModule {
     }
 
 
-
+    @Provides
+    @Singleton
+    fun provideCountryClient(
+    ): CountryClient {
+        return ApolloCountryClient(provideApolooClinet())
+    }
 
 
 }

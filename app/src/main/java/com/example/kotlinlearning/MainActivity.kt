@@ -44,7 +44,9 @@ open class MainActivity : AppCompatActivity() {
                 if (workInfo != null && workInfo.state == WorkInfo.State.SUCCEEDED) {
                     // Work finished successfully
                 }
-            })*/
+            })
+
+         */
 
         setContentView(mainBinding.root)
     }

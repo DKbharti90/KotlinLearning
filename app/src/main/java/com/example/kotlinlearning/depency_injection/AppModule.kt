@@ -47,6 +47,8 @@ object AppModule {
 
 
 
+
+
     @Singleton
     @Provides
     fun provideModuleDao(db: AppDatabase) = db.moduleDao()
