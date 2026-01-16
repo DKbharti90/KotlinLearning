@@ -2,10 +2,8 @@ package com.example.kotlinlearning
 
 import android.app.Application
 import android.content.res.Configuration
-import androidx.room.Room
-import com.example.kotlinlearning.data.AppDatabase
-import com.example.kotlinlearning.utils.AppConstant
 import dagger.hilt.android.HiltAndroidApp
+
 
 @HiltAndroidApp
 class MainApplication:Application() {
